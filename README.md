@@ -34,7 +34,7 @@ Example body:
         "id": "<SOME_CUSTOMER_ID>"
     },
     "transfer": {
-        "to": "<RECIPIENT_ADDRESS>"
+        "to": "<RECIPIENT_ADDRESS>",
         "amount": "<AMOUNT_IN_SATOSHI>"
     }
 }
