@@ -3,6 +3,8 @@
 exports.handler = (event, context, lambdaCallback) => {
 
     var done = (failure, success) => {
+        console.log(`Failure: ${failure} / ${failure ? true : false}`);
+        console.log(`Success: ${success} / ${success ? true : false}`);
         lambdaCallback(
             failure ? {
                 statusCode: 501,
@@ -32,12 +34,7 @@ exports.handler = (event, context, lambdaCallback) => {
     } else if (uri === "/payments") {
         require("./payments")(request, context, done);
     } else {
-        lambdaCallback({
-                statusCode: 501,
-                headers: {"Access-Control-Allow-Origin": "*"},
-                body: JSON.stringify({message: `Not a valid API endpoint (${uri})`})
-            }
-        )
+        done({message: `Not a valid API endpoint (${uri})`});
     }
 
 };
