@@ -9,13 +9,13 @@ variable lambda_zip {
   default = "../dist/lambda.zip"
 }
 
-variable WALLET_PASSWORD {
+variable wallet_pw {
 }
-variable WALLET_MERCHANT {
+variable wallet_merchant {
 }
-variable FIREBASE_USER {
+variable firebase_user {
 }
-variable FIREBASE_PW {
+variable firebase_pw {
 }
 
 
@@ -113,10 +113,10 @@ resource "aws_lambda_function" "bitwallet" {
   }
   environment {
     variables = {
-      WALLET_PASSWORD = "${var.WALLET_PASSWORD}"
-      WALLET_MERCHANT = "${var.WALLET_MERCHANT}"
-      FIREBASE_USER = "${var.FIREBASE_USER}"
-      FIREBASE_PASSWORD = "${var.FIREBASE_PW}"
+      WALLET_PASSWORD = "${var.wallet_pw}"
+      WALLET_MERCHANT = "${var.wallet_merchant}"
+      FIREBASE_USER = "${var.firebase_user}"
+      FIREBASE_PASSWORD = "${var.firebase_pw}"
     }
   }
 }
