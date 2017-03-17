@@ -3,19 +3,11 @@
 exports.handler = (event, context, lambdaCallback) => {
 
     var done = (failure, success) => {
-        console.log(`Failure: ${failure} / ${failure ? true : false}`);
-        console.log(`Success: ${success} / ${success ? true : false}`);
-        lambdaCallback(
-            failure ? {
-                statusCode: 501,
-                headers: {"Access-Control-Allow-Origin": "*"},
-                body: JSON.stringify(failure)
-            } : null,
-            success ? {
-                statusCode: 200,
-                headers: {"Access-Control-Allow-Origin": "*"},
-                body: JSON.stringify(success)
-            } : null);
+        lambdaCallback(null, {
+            statusCode: success ? 200 : 501,
+            headers: {"Access-Control-Allow-Origin": "*"},
+            body: success ? JSON.stringify(success) : JSON.stringify(failure)
+        });
     };
 
     context.callbackWaitsForEmptyEventLoop = false;
@@ -34,7 +26,7 @@ exports.handler = (event, context, lambdaCallback) => {
     } else if (uri === "/payments") {
         require("./payments")(request, context, done);
     } else {
-        done({message: `Not a valid API endpoint (${uri})`});
+        done({message: `Invalid API endpoint (${uri})`});
     }
 
 };
