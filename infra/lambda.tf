@@ -9,6 +9,16 @@ variable lambda_zip {
   default = "../dist/lambda.zip"
 }
 
+variable wallet_pw {
+}
+variable wallet_merchant {
+}
+variable firebase_user {
+}
+variable firebase_pw {
+}
+
+
 resource "aws_iam_role" "lambda_executor" {
   name = "LambdaExecutor"
   assume_role_policy = <<EOF
@@ -100,5 +110,13 @@ resource "aws_lambda_function" "bitwallet" {
     security_group_ids = [
       "${aws_security_group.lambda_executor.id}"
     ]
+  }
+  environment {
+    variables = {
+      WALLET_PASSWORD = "${var.wallet_pw}"
+      WALLET_MERCHANT = "${var.wallet_merchant}"
+      FIREBASE_USER = "${var.firebase_user}"
+      FIREBASE_PASSWORD = "${var.firebase_pw}"
+    }
   }
 }
