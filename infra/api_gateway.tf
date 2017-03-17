@@ -104,9 +104,9 @@ resource "aws_api_gateway_integration_response" "cors" {
   rest_api_id = "${aws_api_gateway_rest_api.bitwallet.id}"
   status_code = 200
   http_method = "${aws_api_gateway_method.cors.http_method}"
-  //  response_templates = {
-  //
-  //  }
+  depends_on = [
+    "aws_api_gateway_integration.cors"
+  ]
   response_parameters {
     method.response.header.Access-Control-Allow-Headers = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
     method.response.header.Access-Control-Allow-Methods = "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
