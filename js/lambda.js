@@ -1,6 +1,7 @@
 "use strict";
 
 exports.handler = (event, context, lambdaCallback) => {
+
     var done = (failure, success) => {
         lambdaCallback(
             failure ? {
@@ -25,14 +26,12 @@ exports.handler = (event, context, lambdaCallback) => {
         path: uri
     };
 
-    var app;
     if (uri === "/wallets") {
-        app = require("./wallets");
+        require("./wallets")(request, context, done);
     } else if (uri === "/payments") {
-        app = require("./payments");
+        require("./payments")(request, context, done);
     } else {
         done({message: `Not a valid API endpoint (${uri})`});
     }
 
-    app(request, context, done);
 };
