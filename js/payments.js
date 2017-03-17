@@ -24,6 +24,9 @@ var payments = (request, context, done) => {
                 return wallet.start({port: $.walletPort, bind: walletHost}).then(() => $);
             }),
             async.asyncify($ => {
+                return firebase.firebase().then(database => _.merge($, {database: database}));
+            }),
+            async.asyncify($ => {
                 var ref = $.database.ref(`/wallets/${customerId}`);
                 return ref.once('value').then(snapshot => {
                     var wallet = snapshot.val();
