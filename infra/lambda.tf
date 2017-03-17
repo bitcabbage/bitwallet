@@ -9,13 +9,13 @@ variable lambda_zip {
   default = "../dist/lambda.zip"
 }
 
-variable wallet_pw {
+variable WALLET_PASSWORD {
 }
-variable wallet_merchant {
+variable WALLET_MERCHANT {
 }
-variable firebase_user {
+variable FIREBASE_USER {
 }
-variable firebase_pw {
+variable FIREBASE_PW {
 }
 
 
