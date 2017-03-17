@@ -4,7 +4,7 @@ exports.handler = (event, context, lambdaCallback) => {
 
     var done = (failure, success) => {
         lambdaCallback(null, {
-            statusCode: success ? 200 : 501,
+            statusCode: success ? 200 : 500,
             headers: {"Access-Control-Allow-Origin": "*"},
             body: success ? JSON.stringify(success) : JSON.stringify(failure)
         });
