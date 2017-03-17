@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "4.1"
+  - "6"
 
 before_install:
   - npm install -g gulp
@@ -14,7 +14,7 @@ install:
 script:
   - gulp build
   - terraform init infra
-  - terraform apply -var 'lambda_zip=dist/lambda.zip' -var 'wallet_pw=$WALLET_PASSWORD' -var 'wallet_merchant=$WALLET_MERCHANT' -var 'firebase_user=$FIREBASE_USER' -var 'firebase_pw=$FIREBASE_PW' infra
+  - terraform apply -var 'lambda_zip=dist/lambda.zip' infra
 
 env:
   global:

@@ -113,10 +113,10 @@ resource "aws_lambda_function" "bitwallet" {
   }
   environment {
     variables = {
-      WALLET_PASSWORD = "${var.wallet_pw}"
-      WALLET_MERCHANT = "${var.wallet_merchant}"
-      FIREBASE_USER = "${var.firebase_user}"
-      FIREBASE_PASSWORD = "${var.firebase_pw}"
+      WALLET_PASSWORD = "${var.WALLET_PASSWORD}"
+      WALLET_MERCHANT = "${var.WALLET_MERCHANT}"
+      FIREBASE_USER = "${var.FIREBASE_USER}"
+      FIREBASE_PASSWORD = "${var.FIREBASE_PW}"
     }
   }
 }
