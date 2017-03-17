@@ -65,7 +65,11 @@ resource "aws_api_gateway_method" "any" {
   resource_id = "${aws_api_gateway_resource.proxy.id}"
   http_method = "ANY"
   authorization = "NONE"
-  api_key_required = false
+
+  // 
+  // https://github.com/hashicorp/terraform/issues/8532
+  //
+  api_key_required = true
 }
 
 resource "aws_api_gateway_integration" "lambda" {
@@ -155,3 +159,5 @@ resource "aws_api_gateway_api_key" "key" {
     stage_name = "${aws_api_gateway_deployment.production.stage_name}"
   }
 }
+
+
