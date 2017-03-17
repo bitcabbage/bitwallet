@@ -4,6 +4,7 @@ node_js:
 
 before_install:
   - npm install -g gulp
+  - gulp -v
   - wget https://releases.hashicorp.com/terraform/0.9.0/terraform_0.9.0_linux_amd64.zip -O /tmp/terraform.zip
   - sudo unzip -d /usr/local/bin/ /tmp/terraform.zip
 
