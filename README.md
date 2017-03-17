@@ -6,7 +6,7 @@ Bitwallet is a nice and sexy web service for working with Bitcabbage customer wa
 
 ## API
 API is exposed through the following endpoint – 
-> `https://quxze3zsll.execute-api.us-west-2.amazonaws.com/prod`
+> `https://quxze3zsll.execute-api.us-west-2.amazonaws.com/latest`
 
 The endpoint is protected by the **authentication token**. The token must be provided via `x-api-key` header.
 
