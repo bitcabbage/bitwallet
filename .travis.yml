@@ -13,6 +13,7 @@ install:
 
 script:
   - gulp build
+  - terraform init infra
   - terraform apply infra
 
 env:
