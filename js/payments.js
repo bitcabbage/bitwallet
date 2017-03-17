@@ -42,9 +42,13 @@ var payments = (request, context, done) => {
                 var senderAddress = $.address;
                 var endpoint = `http://${walletHost}:${walletPort}/merchant/${walletMerchant}/payment?password=${walletPassword}&from=${senderAddress}&to=${recipientAddress}&amount=${amount}`;
                 console.log(`Sending BTC to ${customerId} by hitting ${endpoint}`);
-                return rp({uri: endpoint, json: true}).then(response => _.merge($, {
-                    OK: "OK"
-                }));
+                return rp({uri: endpoint, json: true})
+                    .then(response => _.merge($, {
+                        OK: "OK"
+                    }))
+                    .catch(e => {
+                        throw `Unable to send BTC (${e})`
+                    });
             })
         ],
         done

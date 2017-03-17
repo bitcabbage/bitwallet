@@ -18,6 +18,7 @@ exports.handler = (event, context, lambdaCallback) => {
 
     context.callbackWaitsForEmptyEventLoop = false;
 
+
     var body = JSON.parse(event.body);
     var uri = event.path;
 
