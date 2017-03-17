@@ -130,10 +130,6 @@ resource "aws_api_gateway_method_response" "cors" {
   }
 }
 
-output "bitwallet_url" {
-  value = "${}"
-}
-
 
 //
 // The following resource must be marked 'tainted' on most API Gateway changes.
