@@ -137,8 +137,11 @@ resource "aws_api_gateway_method_response" "cors" {
 // @see https://github.com/hashicorp/terraform/issues/6613
 //
 resource "aws_api_gateway_deployment" "production" {
+  depends_on = [
+    "aws_api_gateway_integration.lambda"
+  ]
   rest_api_id = "${aws_api_gateway_rest_api.bitwallet.id}"
-  stage_name = "prod"
+  stage_name = "latest"
 }
 
 //
