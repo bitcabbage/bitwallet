@@ -10,7 +10,7 @@ API is exposed through the following endpoint –
 
 The endpoint is protected by the **authentication token**. The token must be provided via `x-api-key` header.
 
-### Create new or get existing wallet for a customer 
+### * Creating new or getting existing wallet for a customer 
 
 > `POST /wallets`
 
@@ -18,12 +18,27 @@ Example body:
 
 ```json 
 {
-    customer: {
-        id: "<SOME_CUSTOMER_ID>"
+    "customer": {
+        "id": "<SOME_CUSTOMER_ID>"
     }
 }
 ```
   
+### * Making an outgoing payment
+  
+> `POST /payments`
+
+```json 
+{
+    "customer": {
+        "id": "<SOME_CUSTOMER_ID>"
+    }
+    "transfer": {
+        "to": "<RECIPIENT_ADDRESS>"
+        "amount": "<AMOUNT_IN_SATOSHI>"
+    }
+}
+```
 
 ## Setup instructions
 In order to access Blockchain wallet via API, calling services' ip addresses must be provided in Wallet settings.

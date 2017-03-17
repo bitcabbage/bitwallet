@@ -13,7 +13,13 @@ exports.handler = (event, context, done) => {
     };
     console.log(request);
 
-    var app = require("./wallets");
+    var app;
+    if (uri === "/wallets") {
+        app = require("./wallets");
+    }
+    if (uri === "/payments") {
+        app = require("./payments");
+    }
 
     app(request, context,
         (failure, success) => {

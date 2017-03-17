@@ -19,7 +19,7 @@ var wallets = (request, context, done) => {
                 })
             }),
             async.asyncify($ => {
-                return wallet.start({port: $.walletPort, bind: '127.0.0.1'}).then(() => $);
+                return wallet.start({port: $.walletPort, bind: walletHost}).then(() => $);
             }),
             async.asyncify($ => {
                 return firebase.firebase().then(database => _.merge($, {database: database}));
