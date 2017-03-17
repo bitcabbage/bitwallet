@@ -1,6 +1,19 @@
 "use strict";
 
-exports.handler = (event, context, done) => {
+exports.handler = (event, context, lambdaCallback) => {
+    var done = (failure, success) => {
+        lambdaCallback(
+            failure ? {
+                statusCode: 500,
+                headers: {"Access-Control-Allow-Origin": "*"},
+                body: JSON.stringify(failure)
+            } : null,
+            success ? {
+                statusCode: 200,
+                headers: {"Access-Control-Allow-Origin": "*"},
+                body: JSON.stringify(success)
+            } : null);
+    };
 
     context.callbackWaitsForEmptyEventLoop = false;
 
@@ -11,32 +24,15 @@ exports.handler = (event, context, done) => {
         body: body,
         path: uri
     };
-    console.log(request);
 
     var app;
     if (uri === "/wallets") {
         app = require("./wallets");
-    }
-    if (uri === "/payments") {
+    } else if (uri === "/payments") {
         app = require("./payments");
+    } else {
+        done({message: `Not a valid API endpoint (${uri})`});
     }
 
-    app(request, context,
-        (failure, success) => {
-            if (failure) {
-                console.error(failure);
-            }
-            done(
-                failure ? {
-                    statusCode: 500,
-                    headers: {"Access-Control-Allow-Origin": "*"},
-                    body: JSON.stringify(failure)
-                } : null,
-                success ? {
-                    statusCode: 200,
-                    headers: {"Access-Control-Allow-Origin": "*"},
-                    body: JSON.stringify(success)
-                } : null);
-        });
-
+    app(request, context, done);
 };
