@@ -14,7 +14,7 @@ install:
 script:
   - gulp build
   - terraform init infra
-  - terraform apply infra -var 'lambda_zip=dist/lambda.zip'
+  - terraform apply -var 'lambda_zip=dist/lambda.zip' infra
 
 env:
   global:
