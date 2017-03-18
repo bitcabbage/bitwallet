@@ -33,7 +33,7 @@ var payments = (request, context, done) => {
                     if (!wallet) {
                         done(`Customer (${customerId}) does not have a wallet.`);
                     } else {
-                        console.log("Customer (${customerId}) has a wallet.");
+                        console.log(`Customer (${customerId}) has a wallet.`);
                         return _.merge($, {address: wallet.wallet.address})
                     }
                 })
