@@ -31,8 +31,9 @@ var payments = (request, context, done) => {
                 return ref.once('value').then(snapshot => {
                     var wallet = snapshot.val();
                     if (!wallet) {
-                        throw `Customer (${customerId}) does not have a wallet.`
+                        done(`Customer (${customerId}) does not have a wallet.`);
                     } else {
+                        console.log("Customer (${customerId}) has a wallet.");
                         return _.merge($, {address: wallet.wallet.address})
                     }
                 })
@@ -43,17 +44,8 @@ var payments = (request, context, done) => {
                 var endpoint = `http://${walletHost}:${walletPort}/merchant/${walletMerchant}/payment?password=${walletPassword}&from=${senderAddress}&to=${recipientAddress}&amount=${amount}`;
                 console.log(`Sending BTC to ${customerId} by hitting ${endpoint}`);
                 return rp({uri: endpoint, json: true})
-                    .then(response => {
-                        if (response.error) {
-                            throw response.error
-                        }
-                        return _.merge($, {
-                            OK: "OK"
-                        })
-                    })
-                    .catch(e => {
-                        throw `Unable to send BTC (${e})`
-                    });
+                    .then(() => _.merge($, {OK: "OK"}))
+                    .catch(e => done(e.error));
             })
         ],
         done
