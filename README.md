@@ -23,7 +23,15 @@ Example body:
     }
 }
 ```
-  
+Response: 200OK
+
+```json
+{
+  "wallet": {
+    "address": "<SOME_WALLET_ADDRESS>"
+  }
+}
+```
 ### * Making an outgoing payment
   
 > `POST /payments`
