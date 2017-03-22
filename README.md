@@ -23,13 +23,19 @@ Example body:
     }
 }
 ```
-Response: 200OK
+Response: 200 OK
 
 ```json
 {
   "wallet": {
     "address": "<SOME_WALLET_ADDRESS>"
   }
+}
+```
+Response: 403 Forbidden
+```json
+{
+    "message": "Missing Authentication Token"
 }
 ```
 ### * Making an outgoing payment
