@@ -54,6 +54,11 @@ Response: 403 Forbidden
 }
 ```
 
+Response: 500 Internal Server Error
+```json
+{"error":"Unexpected error, please try again"}
+```
+
 ## Setup instructions
 In order to access Blockchain wallet via API, calling services' ip addresses must be provided in Wallet settings.
 
