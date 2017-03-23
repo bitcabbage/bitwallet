@@ -43,9 +43,7 @@ var payments = (request, context, done) => {
                 var senderAddress = $.address;
                 var endpoint = `http://${walletHost}:${walletPort}/merchant/${walletMerchant}/payment?password=${walletPassword}&from=${senderAddress}&to=${recipientAddress}&amount=${amount}`;
                 console.log(`Sending BTC to ${customerId} by hitting ${endpoint}`);
-                return rp({uri: endpoint, json: true})
-                    .then(() => _.merge($, {OK: "OK"}))
-                    .catch(e => done(e.error));
+                return rp({uri: endpoint, json: true}).catch(e => done(e.error));
             })
         ],
         done
